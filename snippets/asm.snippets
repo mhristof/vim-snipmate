@@ -1,0 +1,42 @@
+snippet incr
+	${1:r0} = M[${2:}];
+	$1 = $1 + ${3:1};
+	M[$2] = $1;${4:}
+snippet cc
+	// 
+snippet ifdef
+	#ifdef ${1:}
+		${2:}
+	#endif //$1
+snippet header
+	// *****************************************************************************
+	// MODULE:
+	//		${1:}
+	//
+	// DESCRIPTION:
+	//		${2:}
+	//
+	// INPUTS:
+	//		${3:TODO}
+	//
+	// OUTPUTS:
+	//		${4:TODO}
+	//
+	// TRASHED REGISTERS:
+	//		${5:TODO}
+	//
+	// NOTES:
+	//		${6:}
+	//
+	// *****************************************************************************
+	.MODULE $M.$1;
+		.CODESEGMENT PM_FLASH;
+	$1:
+
+	$push_rLink_macro;
+
+	jump $pop_rLink_and_rts;
+	.ENDMODULE;
+
+snippet def
+	#define ${1:FOO}

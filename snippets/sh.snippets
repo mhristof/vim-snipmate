@@ -1,0 +1,56 @@
+# #!/bin/bash
+snippet #!
+	#!/bin/bash
+	
+snippet if
+	if [[ ${1:condition} ]]; then
+		${2:#statements}
+	fi
+snippet elif
+	elif [[ ${1:condition} ]]; then
+		${2:#statements}
+snippet for
+	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
+		${3:#statements}
+	done
+snippet wh
+	while [[ ${1:condition} ]]; do
+		${2:#statements}
+	done
+snippet until
+	until [[ ${1:condition} ]]; do
+		${2:#statements}
+	done
+snippet case
+	case ${1:word} in
+		${2:pattern})
+			${3};;
+	esac
+snippet getopts
+	while getopts "${1:hv}" OPTION
+	do
+		 case $OPTION in
+			 h)
+				 usage
+				 exit 1
+				 ;;
+			 v)
+				VERBOSE=1;
+				 ;;
+			 ?)
+				 usage
+				 exit
+				 ;;
+		 esac
+	done
+snippet ver
+	[[ $VERBOSE ]] && echo "${1:}"${2:}
+snippet ibs
+	IFS="$(echo -e "\b\r")";
+snippet ifs
+	IFS="$(echo -e "\b\r")";
+snippet LOG=
+	LOG_D=$TMPDIR/$(basename $${0:0} .sh)/$(date +'%s')
+	LOG=$LOG_D/$(basename $${0:0} .sh).log;
+	[[ -d $LOG_D ]] || mkdir -p $LOG_D;
+	
