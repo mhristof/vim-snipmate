@@ -1,0 +1,18 @@
+snippet ansible
+	ansiblePlaybook('${1:path/to/playbook}') {
+		inventoryPath('${2:\\$inventory_file}')
+		//inventoryContent(String content, boolean dynamic = false)
+		ansibleName('${3:ansible-1.9.4}')
+		limit('${4:\\$server'})
+		// tags(String tags)
+		// skippedTags(String tags)
+		// startAtTask(String task)
+		credentialsId('${5:761956d5-2a20-43c0-ba03-bb8a39f1530b}')
+		sudo('${6:true}')
+		//sudoUser(String user = 'root')
+		forks('${7:50}')
+		// unbufferedOutput(boolean unbufferedOutput = true)
+		colorizedOutput(true)
+		hostKeyChecking(false)
+		// additionalParameters('')
+	}
