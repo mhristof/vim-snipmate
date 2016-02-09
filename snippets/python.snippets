@@ -102,3 +102,7 @@ snippet argarg
 	parser.add_argument('${1:-s}', '${2:--long-name}',
 						help='${3:Help message}')
 
+snippet find
+	for root, dirs, files in os.walk(dir):
+	    for f in files:
+	        fullpath = os.path.join(root, f)
