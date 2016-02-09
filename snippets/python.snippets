@@ -103,6 +103,6 @@ snippet argarg
 						help='${3:Help message}')
 
 snippet find
-	for root, dirs, files in os.walk(dir):
+	for root, dirs, files in os.walk(${1:directory}):
 	    for f in files:
 	        fullpath = os.path.join(root, f)
