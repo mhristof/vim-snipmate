@@ -106,3 +106,5 @@ snippet find
 	for root, dirs, files in os.walk(${1:directory}):
 	    for f in files:
 	        fullpath = os.path.join(root, f)
+snippet hostname
+	os.uname()[1]
