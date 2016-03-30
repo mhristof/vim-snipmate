@@ -86,3 +86,12 @@ snippet _
 	__${1:init}__${2}
 snippet pdb
 	import pdb; pdb.set_trace()
+snippet argparse
+	parser = argparse.ArgumentParser(description='${1:}')
+	parser.add_argument('-v', '--verbose',
+						action='count',
+						help='Increase verbosity')
+	args = parser.parse_args()
+snippet addarg
+	parser.add_argument('${1:}',
+						help='${2:}')
