@@ -108,3 +108,11 @@ snippet find
 	        fullpath = os.path.join(root, f)
 snippet hostname
 	os.uname()[1]
+snippet ts
+	import time
+	import datetime
+	ts = datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%dT%H%M%S')
+snippet basename
+	os.path.basename(${1:})
+snippet abspath
+	os.path.abspath(${1:})
