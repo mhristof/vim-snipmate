@@ -8,11 +8,19 @@ snippet ansible
 		// skippedTags(String tags)
 		// startAtTask(String task)
 		credentialsId('${5:761956d5-2a20-43c0-ba03-bb8a39f1530b}')
-		sudo('${6:true}')
+		sudo(${6:true})
 		//sudoUser(String user = 'root')
-		forks('${7:50}')
+		forks(${7:50})
 		// unbufferedOutput(boolean unbufferedOutput = true)
 		colorizedOutput(true)
 		hostKeyChecking(false)
 		// additionalParameters('')
+	}
+
+snippet repo
+	configure {
+	    it / scm(class:'hudson.plugins.repo.RepoScm') {
+	        manifestRepositoryUrl("${1:}")
+	        jobs(4)
+	    }
 	}
