@@ -89,6 +89,7 @@ snippet pdb
 snippet argparse
 	import argparse
 	parser = argparse.ArgumentParser(description='${1:Brief description}')
+	# subparsers = parser.add_subparsers(help='commands')
 
 	parser.add_argument('-n', '--dry-ryn',
 						action='store_true',
@@ -99,8 +100,8 @@ snippet argparse
 
 	args = parser.parse_args()
 snippet argarg
-	parser.add_argument('${1:-s}', '${2:--long-name}',
-						help='${3:Help message}')
+	${1:parser}.add_argument('${2:-s}', '${3:--long-name}',
+						help='${4:Help message}')
 
 snippet find
 	for root, dirs, files in os.walk(${1:directory}):
@@ -116,3 +117,6 @@ snippet basename
 	os.path.basename(${1:})
 snippet abspath
 	os.path.abspath(${1:})
+snippet subparse
+	${1:name} = subparsers.add_parser('$1', help='${2:Help message}')
+	$1.set_defaults(which='$1')
