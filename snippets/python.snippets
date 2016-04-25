@@ -96,6 +96,7 @@ snippet argparse
 						help='Dry run mode')
 	parser.add_argument('-v', '--verbose',
 						action='count',
+						default=0,
 						help='Increase verbosity')
 
 	args = parser.parse_args()
@@ -120,3 +121,9 @@ snippet abspath
 snippet subparse
 	${1:name} = subparsers.add_parser('$1', help='${2:Help message}')
 	$1.set_defaults(which='$1')
+snippet loggeri
+	logger = logging.getLogger('${1:}')
+	levels = (logging.ERROR, logging.WARNING, logging.INFO, logging.DEBUG)
+	logging_format = "[%(filename)s:%(lineno)s - %(funcName)20s() ] " + \
+		"%(message)s"
+	logging.basicConfig(level=levels[args.verbose], format=logging_format)
