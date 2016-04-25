@@ -24,3 +24,32 @@ snippet repo
 	        jobs(4)
 	    }
 	}
+snippet freeStyleJob
+	freeStyleJob("${1:jobname}") {
+		logRotator {
+			daysToKeep(-1)
+			numToKeep(-1)
+			artifactDaysToKeep(7)
+			artifactNumToKeep(-1)
+		}
+		// authenticationToken('processor-all')
+	}
+snippet listView
+	listView("${1:view-name}") {
+		description("${2:view description}")
+		filterBuildQueue()
+		filterExecutors()
+		jobs {
+			name("")
+			// regex("")
+		}
+		columns {
+			status()
+			weather()
+			name()
+			lastSuccess()
+			lastFailure()
+			lastDuration()
+			buildButton()
+		}
+	}
