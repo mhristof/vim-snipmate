@@ -123,6 +123,7 @@ snippet subparse
 	$1.set_defaults(which='$1')
 snippet loggeri
 	def config_logging(level):
+		""" configure logger """
 		levels = [logging.CRITICAL, logging.ERROR, logging.WARNING,
 				  logging.INFO, logging.DEBUG]
 		script_name = os.path.basename(__file__.replace('.py', ''))
@@ -133,19 +134,19 @@ snippet loggeri
 			fname = '{}.log'.format(script_name)
 
 		log.setLevel(logging.DEBUG)
-		format = logging.Formatter("%(asctime)s [%(filename)s:%(lineno)s - " +
-								   "%(funcName)20s() ] " +
-								   "%(message)s")
+		str_format = logging.Formatter("%(asctime)s [%(filename)s:%(lineno)s - " +
+									   "%(funcName)20s() ] " +
+									   "%(message)s")
 
 		if level != 0:
-			ch = logging.StreamHandler(sys.stdout)
-			ch.setFormatter(format)
-			log.addHandler(ch)
+			stdout_h = logging.StreamHandler(sys.stdout)
+			stdout_h.setFormatter(str_format)
+			log.addHandler(stdout_h)
 			try:
 				log.setLevel(levels[level])
 			except IndexError:
 				log.setLevel(levels[-1])
 
-		fh = RotatingFileHandler(fname, maxBytes=(1048576*5), backupCount=7)
-		fh.setFormatter(format)
-		log.addHandler(fh)
+		file_h = RotatingFileHandler(fname, maxBytes=(1048576*5), backupCount=7)
+		file_h.setFormatter(str_format)
+		log.addHandler(file_h)
