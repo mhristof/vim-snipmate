@@ -53,4 +53,16 @@ snippet LOG=
 	LOG_D=$TMPDIR/$(basename $${0:0} .sh)/$(date +'%s')
 	LOG=$LOG_D/$(basename $${0:0} .sh).log;
 	[[ -d $LOG_D ]] || mkdir -p $LOG_D;
-	
+snippet flog
+	function log {
+		local msg
+		msg="$(date --iso-8601=seconds) [$$] $*"
+		[[ $VERBOSE ]] && echo "$msg"
+		#echo "$msg" >> /var/log/import_database.log
+	}
+snippet fex
+	function execute {
+		[[ $VERBOSE ]] && log "$*"
+		[[ $DRY -ne 1 ]] && eval "$*"
+	}
+
