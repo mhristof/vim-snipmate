@@ -1,6 +1,5 @@
 snippet provider-aws
 	provider "aws" {
-	  shared_credentials_file = "~/.aws/creds"
 	  profile = "${1:default}"
 	  region = "${2:eu-west-2}"
 	}
@@ -30,4 +29,60 @@ snippet bucket
 	  tags {
 	    Name        = "$2"
 	  }
+	}
+snippet backend
+	terraform {
+	  backend "s3" {
+		bucket = "${1:bucket_name}"
+		key    = "${2:key}"
+		region = "${3:${var.region}}"
+	  }
+	}
+snippet amidata
+	data "aws_ami" "ubuntu" {
+	  most_recent = true
+
+	  filter {
+		name   = "name"
+		values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+	  }
+
+	  filter {
+		name   = "virtualization-type"
+		values = ["hvm"]
+	  }
+
+	  owners = ["099720109477"] # Canonical
+	}
+snippet network
+	resource "aws_vpc" "${1:main}" {
+	  cidr_block       = "10.0.0.0/16"
+	}
+
+	resource "aws_subnet" "${2:main}" {
+	  vpc_id     = "${aws_vpc.$1.id}"
+	  cidr_block = "10.0.1.0/24"
+	}
+
+snippet security_group
+	resource "aws_security_group" "${1:default}" {
+	  name        = "${2:name}"
+	  description = "${3:description"
+	  # vpc_id      = "${aws_vpc.main.id}"
+
+	  ingress {
+	    from_port   = 0
+	    to_port     = 0
+	    protocol    = "-1"
+	    cidr_blocks = ["0.0.0.0/0"]
+	  }
+	  egress {
+		from_port       = 22
+		to_port         = 22
+		protocol        = "TCP"
+	  }
+	}
+snippet ta
+	tags {
+	  ${1:Name} = ${2:Value}
 	}
