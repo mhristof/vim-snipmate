@@ -220,6 +220,10 @@ snippet upt
 	upto(${1:1.0/0.0}) { |${2:n}| ${3} }
 snippet loo
 	loop { ${1} }
+snippet .each
+	${1:}.each { |${2:i}|
+	  ${3}
+	}
 snippet ea
 	each { |${1:e}| ${2} }
 snippet eab
@@ -312,11 +316,11 @@ snippet optp
 
 	options = {${1:default => "args"}}
 
-	ARGV.options do |opts|
-		opts.banner = "Usage: #{File.basename($PROGRAM_NAME)}
+	OptionParser.new do |opts|
+		opts.banner = "Usage: #{File.basename($PROGRAM_NAME)}"
+	end.parse!
 snippet opt
-	opts.on( "-${1:o}", "--${2:long-option-name}", ${3:String},
-	         "${4:Option description.}") do |${5:opt}|
+	opts.on("-${1:o}", "--${2:long-option-name}", ${3:String}, "${4:Option description.}") do |${5:opt}|
 		${6}
 	end
 snippet tc
@@ -418,3 +422,47 @@ snippet tas
 	task :${2:task_name => [:dependent, :tasks]} do
 		${3}
 	end
+snippet vbox
+	config.vm.define "${1:box_name}" do |box|
+		box.vm.box = "${2:ubuntu/xenial64}"
+	end
+snippet vram
+	${1:config}.vm.provider "virtualbox" do |vb|
+		 vb.memory = "${2:1024}"
+		 vb.cpus = ${3:1}
+	end
+snippet vfolder
+	${config}.vm.synced_folder "${1:.}", "${2:/vagrant}", disabled: ${3:false}
+snippet vshell
+	${1:config}.vm.provision "shell", privileged: ${1:true}, name: "${2:shell}", inline: <<-SHELL
+		${3:apt-get update}
+	SHELL${4:}
+snippet vansible
+	${1:config}.vm.provision "ansible" do |ansible|
+	  ansible.playbook = "${2:}.yml"
+	end
+snippet argparse
+	OptionParser.new do |opts|
+	  opts.banner = "Usage: #{__FILE__} [options]"
+	end.parse!
+snippet fargparse
+	def ${1:parse_args}
+	  args = {
+	    :verbose => 0
+	  }
+	  OptionParser.new do |opts|
+	    opts.banner = "Usage: #{__FILE__} [options]"
+	    opts.on("-v", "--verbose", String, "Increase verbosity") do |opt|
+	      args[:verbose] += 1
+	    end
+	  end.parse!
+	  args
+	end
+snippet ifmain
+	def main
+	  ${1}
+	end
+
+	main if $PROGRAM_NAME == __FILE__
+snippet pdb
+	require 'pry'; binding.pry

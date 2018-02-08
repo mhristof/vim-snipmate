@@ -1,0 +1,33 @@
+snippet provider-aws
+	provider "aws" {
+	  shared_credentials_file = "~/.aws/creds"
+	  profile = "${1:default}"
+	  region = "${2:eu-west-2}"
+	}
+snippet var
+	variable "${1:name}" {
+	  default = "${2:value}"
+	}
+snippet ec2
+	resource "aws_instance" "${1:name}" {
+	  ami = "${2:ami}"
+	  key_name = "${3:key_name}"
+
+	  tags {
+	  	Name = "${4:name}"
+	  }
+
+snippet ssh
+	resource "aws_key_pair" "deploy" {
+	    key_name   = "deploy-${var.owner}"
+	    public_key = "${file("~/.ssh/id_rsa.pub")}"
+	}
+snippet bucket
+	resource "aws_s3_bucket" "${1:name}" {
+	  bucket = "${2:name}"
+	  acl    = "private"
+
+	  tags {
+	    Name        = "$2"
+	  }
+	}

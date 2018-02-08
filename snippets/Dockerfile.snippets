@@ -1,0 +1,4 @@
+snippet apt-get
+	RUN apt-get update -y && \
+	  apt-get install -y ${1:} && \
+	  rm -rf /var/lib/apt/lists/*
