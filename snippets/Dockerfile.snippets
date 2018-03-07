@@ -2,3 +2,7 @@ snippet apt-get
 	RUN apt-get update -y && \
 	  apt-get install -y ${1:} && \
 	  rm -rf /var/lib/apt/lists/*
+snippet wget
+	wget --quiet ${1:} -O ${2:}
+snippet curl
+	curl --silent ${1:} -O ${2:}
