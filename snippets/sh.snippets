@@ -27,6 +27,15 @@ snippet case
 			${3};;
 	esac
 snippet getopts
+	# https://stackoverflow.com/a/30026641/2599522
+	for arg in "$@"; do
+	  shift
+	  case "$arg" in
+	    "--help") set -- "$@" "-h" ;;
+		*)        set -- "$@" "$arg"
+	  esac
+	done
+
 	while getopts "${1:hv}" OPTION
 	do
 		 case $OPTION in
