@@ -152,3 +152,6 @@ snippet loggeri
 		file_h = RotatingFileHandler(fname, maxBytes=(1048576*5), backupCount=7)
 		file_h.setFormatter(str_format)
 		log.addHandler(file_h)
+
+snippet wo
+	with open(${1:os.path.join('/tmp', os.path.basename(__file__) + '.log')}, 'w') as ${2:out}:
