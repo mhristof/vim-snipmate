@@ -155,3 +155,5 @@ snippet loggeri
 
 snippet wo
 	with open(${1:os.path.join('/tmp', os.path.basename(__file__) + '.log')}, 'w') as ${2:out}:
+snippet topen
+	${1:lines} = tuple(open(${2:fin}, 'r'))
