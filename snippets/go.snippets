@@ -1,2 +1,5 @@
 snippet p
-	fmt.Println($1)
+	fmt.Println(${1:})
+
+snippet psp
+	fmt.Println(fmt.Sprintf("${1:}", ${2:}))
