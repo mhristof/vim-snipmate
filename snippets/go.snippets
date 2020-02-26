@@ -3,3 +3,11 @@ snippet p
 
 snippet psp
 	fmt.Println(fmt.Sprintf("${1:}", ${2:}))
+
+snippet prettyjson
+	// dont forget to import "encoding/json"
+	${1:variable}JSON, err := json.MarshalIndent($1, "", "    ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println($1JSON)
