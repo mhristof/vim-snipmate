@@ -86,3 +86,22 @@ snippet ta
 	tags {
 	  ${1:Name} = ${2:Value}
 	}
+
+snippet out
+	output "${1:name}" {
+		value = ${2:value}
+	}
+
+snippet local-file
+	resource "local_file" "${1:name}" {
+	  content  = "${2:content}"
+	  filename = "${path.module}/${3:path}"
+	}
+
+
+snippet local-exec
+	provisioner "local-exec" {
+		command = "${1:date}"
+		interpreter = ["${2:/bin/bash", "-c}"]
+		environment = {}
+	}

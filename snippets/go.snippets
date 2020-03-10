@@ -1,7 +1,10 @@
-snippet p
+snippet fp
 	fmt.Println(${1:})
 
-snippet psp
+snippet fpr
+	fmt.Println(${1:})
+
+snippet fps
 	fmt.Println(fmt.Sprintf("${1:}", ${2:}))
 
 snippet prettyjson
@@ -11,3 +14,24 @@ snippet prettyjson
 		panic(err)
 	}
 	fmt.Println(string($1JSON))
+
+snippet fe
+	fmt.Errorf("${1:message}", ${2:args})
+
+snippet fs
+	fmt.Sprintf("${1:message}", ${2:args})
+
+snippet iferr
+	if err != nil {
+		${1:panic(err)}
+	}
+
+snippet func
+	func ${1:awesomeFunction}(${2:args) (${3:returns}) {
+		${4:body}
+	}
+
+snippet for
+	for i := 0; i < ${1:10}; i++ {
+		${2:}
+	}
