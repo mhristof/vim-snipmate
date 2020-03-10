@@ -1,9 +1,6 @@
 snippet fp
 	fmt.Println(${1:})
 
-snippet fpr
-	fmt.Println(${1:})
-
 snippet fps
 	fmt.Println(fmt.Sprintf("${1:}", ${2:}))
 
@@ -34,4 +31,9 @@ snippet func
 snippet for
 	for i := 0; i < ${1:10}; i++ {
 		${2:}
+	}
+
+snippet exists
+	if _, err := os.Stat(${1:"file"}); os.IsNotExist(err) {
+		panic(fmt.Sprintf("Error, file %s does not exist", $1))
 	}
