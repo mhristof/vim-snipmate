@@ -105,3 +105,12 @@ snippet local-exec
 		interpreter = ["${2:/bin/bash", "-c}"]
 		environment = {}
 	}
+
+snippet join
+	join("${1:,}", ${2:variable})
+
+snippet split
+	split("${1:,}", ${2:variable})
+
+snippet replace
+	replace(${1:haystack}, ${2:needle}, ${3:new})

@@ -1,12 +1,25 @@
 snippet apt-get
-	RUN apt-get update -y && \
+	ENV DEBIAN_FRONTEND noninteractive
+	RUN apt-get update && \
 	  apt-get install -y ${1:} && \
 	  rm -rf /var/lib/apt/lists/*
 snippet wget
 	wget --quiet ${1:} -O ${2:}
 snippet curl
-	curl --silent ${1:} -O ${2:}
+	curl --remote-name --silent ${1:}
 snippet user
 	RUN groupadd -g 999 ${1:appuser} && \
 		useradd -r -u 999 -g $1 $1
 	USER $1
+
+snippet terraform
+	ARG terraform_version=0.12.23
+	ARG terraform_zip=terraform_${terraform_version}_linux_amd64.zip
+	ARG terraform_zip_sha256=78fd53c0fffd657ee0ab5decac604b0dea2e6c0d4199a9f27db53f081d831a45
+	RUN cd /tmp &&\
+		curl --remote-name --silent https://releases.hashicorp.com/terraform/${terraform_version}/${terraform_zip} &&\
+		sha256sum ${terraform_zip} | grep ${terraform_zip_sha256} &&\
+		unzip ${terraform_zip} &&\
+		mv terraform /usr/bin/ &&\
+		rm ${terraform_zip}
+

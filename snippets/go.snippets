@@ -37,3 +37,11 @@ snippet exists
 	if _, err := os.Stat(${1:"file"}); os.IsNotExist(err) {
 		panic(fmt.Sprintf("Error, file %s does not exist", $1))
 	}
+snippet decode64
+	// import "encoding/base64"
+	decoded, err := base64.StdEncoding.DecodeString(${1:encoded})
+
+snippet encode64
+	// import "encoding/base64"
+	encoded := base64.StdEncoding.EncodeToString(${1:string})
+
