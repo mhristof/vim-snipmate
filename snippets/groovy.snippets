@@ -53,3 +53,43 @@ snippet listView
 			buildButton()
 		}
 	}
+snippet agentdockerfile
+	dockerfile {
+	  filename '${1:Dockerfile}'
+	  label '${2:docker-agent-terraform}'
+	}
+snippet withaws
+	withAWS(role:'${1:role}', roleAccount:"${2:account}", duration: 3600) {
+	  ${2:commands}
+	}
+
+snippet when
+	when {
+	  expression {
+	    return env.BRANCH_NAME != 'master'
+	  }
+	}
+
+snippet pipe
+	${1:var} = sh(script: "${2:date}", returnStdout: true).trim()
+
+snippet withusername
+	withCredentials([usernamePassword(
+	  credentialsId: '${1:id}',
+	  usernameVariable: '${2:USERNAME}',
+	  passwordVariable: '${3:PASSWORD}'
+	  )]) {
+	  ${4:}
+	}
+snippet boolparam
+	booleanParam(
+	  name: '${1:name}',
+	  defaultValue: ${2:true},
+	  description: '''${3:Description}'''
+	)
+snippet stringparam
+	string(
+	  name: '${1:name}',
+	  defaultValue: '${2:value}',
+	  description: '''${3:description}'''
+	)
