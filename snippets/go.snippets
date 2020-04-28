@@ -47,3 +47,11 @@ snippet encode64
 	// import "encoding/base64"
 	encoded := base64.StdEncoding.EncodeToString(${1:string})
 
+snippet isdir
+	if info, err := os.Stat(${1:path}); err == nil && info.IsDir() {
+
+	}
+snippet find
+	files, err := ioutil.ReadDir(${1:dir})
+snippet slurp
+	ioutil.ReadFile(${1:file_path})

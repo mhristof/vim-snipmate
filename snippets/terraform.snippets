@@ -114,3 +114,47 @@ snippet split
 
 snippet replace
 	replace(${1:haystack}, ${2:needle}, ${3:new})
+
+snippet dregion
+	data "aws_region" "region" {}
+
+snippet dzip
+	data "archive_file" "lambda_zip_dir" {
+	  type        = "zip"
+	  output_path = "${path.module}/${1:out.zip}"
+	  source_file = "${path.module}/${2:src}"
+	}
+
+snippet diam
+	data "aws_iam_policy_document" "$1" {
+		statement {
+		  sid = "${1:name}"
+	
+		  actions = [
+		    "*"
+		  ]
+	
+		  resources = [
+		    "*",
+		  ]
+		}
+	}
+
+snippet diamstatement
+	statement {
+	  sid = "${1:name}"
+
+	  actions = [
+	    "*"
+	  ]
+
+	  resources = [
+	    "*",
+	  ]
+	}
+
+snippet rand
+	resource "random_id" "id" {
+	  byte_length = 8
+	}
+
