@@ -55,3 +55,6 @@ snippet find
 	files, err := ioutil.ReadDir(${1:dir})
 snippet slurp
 	ioutil.ReadFile(${1:file_path})
+
+snippet pvar
+	fmt.Println(fmt.Sprintf("$1: %+v", ${1:var}))

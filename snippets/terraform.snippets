@@ -158,3 +158,14 @@ snippet rand
 	  byte_length = 8
 	}
 
+
+snippet behav {
+	behavior {
+	  name = "${1:}"
+	  ${2:}
+	}
+snippet opt
+	option {
+	  key = "${1:behavior}"
+	  value = "${2:NEVER}"
+	}
