@@ -93,3 +93,9 @@ snippet stringparam
 	  defaultValue: '${2:value}',
 	  description: '''${3:description}'''
 	)
+snippet stage
+	stage('${1:name}') {
+	  steps {
+	    sh '${2:date}'
+	  }
+	}
