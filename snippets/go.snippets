@@ -58,3 +58,36 @@ snippet slurp
 
 snippet pvar
 	fmt.Println(fmt.Sprintf("$1: %+v", ${1:var}))
+
+snippet atoi
+	${1:number}, err := strconv.Atoi(${2:string})
+
+snippet atoi64
+	${1:i64}, err := strconv.ParseInt(${2:string}, 10, 32)
+snippet expanduser
+	dir, err := homedir.Expand(${1:path})
+snippet pan
+	panic(${1:"panic!"})
+
+snippet b2file
+	err := ioutil.WriteFile(${1:"fout"}, ${2:bytes}, ${3:0644})
+
+snippet loge
+	log.WithFields(log.Fields{
+		"${1:this}": $1,
+	}).Error("${2:what is happening ?}")
+
+snippet logd
+	log.WithFields(log.Fields{
+		"${1:this}": $1,
+	}).Debug("${2:what is happening ?}")
+
+snippet logp
+	log.WithFields(log.Fields{
+		"${1:err}": $1,
+	}).Panic("${2:what is happening ?}")
+
+snippet heredoc
+	heredoc.Doc(`
+		${1:your doc here}
+	`)
