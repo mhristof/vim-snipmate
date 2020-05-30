@@ -101,3 +101,16 @@ snippet ftest
 
 		}
 	}
+snippet in
+	if ${1:value}, ok := ${2:haystack}[${3:needle}]; ok == true {
+		${4:}
+	}
+snippet cparg
+	${1:command}Cmd.PersistentFlags().${2:String}P("${3:long}", "${4:sort}", ${5:default}, "${6:Help message}")
+
+snippet append
+	${1:list} = append($1, ${2:new})
+snippet range
+	for ${1:_}, ${2:needle} := range ${3:haystack} {
+		${4:}
+	}
