@@ -1,0 +1,6 @@
+snippet package
+	- name: install packages
+	  package:
+		name:
+	  	  - ${1:htop}
+	  state: ${2:present}
