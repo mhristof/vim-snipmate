@@ -13,8 +13,7 @@ snippet wget
 snippet curl
 	curl --remote-name --silent ${1:}
 snippet user
-	RUN groupadd -g 999 ${1:appuser} && \
-		useradd -r -u 999 -g $1 $1
+	RUN useradd --user-group --system --uid 999 $1
 	USER $1
 
 snippet terraform
