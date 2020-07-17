@@ -169,3 +169,7 @@ snippet opt
 	  key = "${1:behavior}"
 	  value = "${2:NEVER}"
 	}
+snippet slurp
+	data "local_file" "${1:name}" {
+		filename = "${path.module}/${2:filename}"
+	}

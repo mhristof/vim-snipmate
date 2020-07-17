@@ -13,7 +13,7 @@ snippet wget
 snippet curl
 	curl --remote-name --silent ${1:}
 snippet user
-	RUN useradd --user-group --system --uid 999 $1
+	RUN useradd --user-group --system --uid 999 ${1:jenkins}
 	USER $1
 
 snippet terraform
@@ -39,3 +39,23 @@ snippet awsiamauthenticator
 	    openssl sha1 -sha256 aws-iam-authenticator &&\
 	    chmod +x ./aws-iam-authenticator &&\
 	    mv aws-iam-authenticator /usr/bin
+snippet docker
+	ENV DEBIAN_FRONTEND noninteractive
+	RUN apt-get update && \
+		apt-get install --yes --no-install-recommends \
+		  apt-transport-https \
+		  ca-certificates \
+		  curl \
+		  gnupg-agent \
+		  software-properties-common \
+		  && \
+		curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - &&\
+		add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" &&\
+		apt-get update &&\
+		apt-get install --yest --no-install-recommends \
+			containerd.io \
+			docker-ce \
+			docker-ce-cli &&\
+		rm -rf /var/lib/apt/lists/*
+
+

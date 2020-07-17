@@ -114,3 +114,28 @@ snippet range
 	for ${1:_}, ${2:needle} := range ${3:haystack} {
 		${4:}
 	}
+snippet cobracmd
+	var (
+		${1:name}Cmd = &cobra.Command{
+			Use:   "$1",
+			Short: "${2:Take over the world}",
+			Run: func(cmd *cobra.Command, args []string) {
+				${3:// do something}
+			},
+		}
+	)
+
+	func init() {
+		rootCmd.AddCommand($1Cmd)
+	}
+
+snippet exec
+	cmd := exec.Command(${1:"ls"})
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	err := cmd.Run()
+	if err != nil {
+		panic(err)
+	}
+	outStr, errStr := string(stdout.Bytes()), string(stderr.Bytes())
