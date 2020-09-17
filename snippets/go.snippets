@@ -53,6 +53,12 @@ snippet isdir
 	}
 snippet find
 	files, err := ioutil.ReadDir(${1:dir})
+snippet walk
+	files, err := ioutil.ReadDir(${1:"."})
+	for _, file := range files {
+		${2}
+	}
+
 snippet slurp
 	ioutil.ReadFile(${1:file_path})
 
@@ -139,3 +145,13 @@ snippet exec
 		panic(err)
 	}
 	outStr, errStr := string(stdout.Bytes()), string(stderr.Bytes())
+snippet sleep
+	time.Sleep(${1:100} * time.Millisecond)
+snippet wait
+	var wg sync.WaitGroup
+	wg.Add(${1:number of items to wait})
+	// defer wg.Done()
+	wg.Wait()
+
+snippet last
+	${1:list}[len($1)-1]

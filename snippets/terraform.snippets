@@ -26,7 +26,7 @@ snippet bucket
 	  bucket = "${2:name}"
 	  acl    = "private"
 
-	  tags {
+	  tags = {
 	    Name        = "$2"
 	  }
 	}
@@ -172,4 +172,23 @@ snippet opt
 snippet slurp
 	data "local_file" "${1:name}" {
 		filename = "${path.module}/${2:filename}"
+	}
+snippet heredoc
+	<<EOF
+	  ${1:}
+	EOF
+snippet validation
+	validation {
+	  condition     = ${1:condition that must be true}
+	  error_message = ${2:error message}
+	}
+snippet who
+	data "aws_caller_identity" "current" {}
+
+	output "who" {
+	  value = {
+	  	account_id = data.aws_caller_identity.current.account_id
+	  	arn = data.aws_caller_identity.current.arn
+	  	user_id = data.aws_caller_identity.current.user_id
+	  }
 	}

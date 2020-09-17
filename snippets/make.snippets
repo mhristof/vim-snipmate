@@ -1,0 +1,17 @@
+snippet phony
+	.PHONY: ${1:target}
+	$1: ${2:}
+
+snippet mkdir
+	${1:directory}: # declare it as a prerequisite with a |
+		mkdir $@
+
+snippet command
+	ifeq ($(shell which ${1:tool}),)
+	$(error Error, missing $1)
+	endif
+
+snippet isset
+	ifeq ($(${1:VARIABLE}),)
+	$(error $1 not set)
+	endif
