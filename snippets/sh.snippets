@@ -79,3 +79,5 @@ snippet noop
 	:
 snippet awswho
 	aws sts get-caller-identity
+snippet die
+	die() { echo "$*" 1>&2 ; exit 1; }

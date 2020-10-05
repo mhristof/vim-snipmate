@@ -155,3 +155,15 @@ snippet wait
 
 snippet last
 	${1:list}[len($1)-1]
+snippet abs
+	${1:abs}, err := filepath.Abs(${2:path})
+snippet tmpdir
+	${1:dir}, err := ioutil.TempDir(${2:"dir"}, ${3:"prefix"})
+	defer os.RemoveAll($1)
+snippet awssession
+	${1:session} = session.Must(session.NewSession(&aws.Config{
+		Region: aws.String(${2:region}),
+	}))
+
+snippet which
+	path, err := exec.LookPath(${1:executable})
