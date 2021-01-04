@@ -167,3 +167,14 @@ snippet awssession
 
 snippet which
 	path, err := exec.LookPath(${1:executable})
+snippet curl
+	resp, err := http.Get(${1:"https://www.example.com"})
+	if err != nil {
+	    panic(err)
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
