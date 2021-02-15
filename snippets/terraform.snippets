@@ -11,8 +11,9 @@ snippet ec2
 	resource "aws_instance" "${1:name}" {
 	  ami = "${2:ami}"
 	  key_name = "${3:key_name}"
+	  instance_type = "t2.micro"
 
-	  tags {
+	  tags = {
 	  	Name = "${4:name}"
 	  }
 
@@ -116,8 +117,7 @@ snippet replace
 	replace(${1:haystack}, ${2:needle}, ${3:new})
 
 snippet dregion
-	data "aws_region" "region" {}
-
+	data "aws_region" "region" {} // data.aws_region.region.name
 snippet dzip
 	data "archive_file" "lambda_zip_dir" {
 	  type        = "zip"
@@ -229,4 +229,19 @@ snippet lambda
 	  }
 	}
 
+snippet parameterstore
+	resource "aws_ssm_parameter" "${1:name}" {
+	  name        = "${2:path}"
+	  type        = "SecureString"
+	  value       = "unset"
+	  lifecycle {
+	    ignore_changes = [
+	      "value",
+	    ]
+	  }
+	}
+snippet assert
+	assert_${1:} = ${2:true} ? (
+	  file("ERROR: ${3: message}")
+	) : null${4:}
 

@@ -82,21 +82,18 @@ snippet loge
 	log.WithFields(log.Fields{
 		"${1:this}": $1,
 	}).Error("${2:what is happening ?}")
-
 snippet logd
 	log.WithFields(log.Fields{
 		"${1:this}": $1,
 	}).Debug("${2:what is happening ?}")
-
 snippet logp
 	log.WithFields(log.Fields{
 		"${1:err}": $1,
 	}).Panic("${2:what is happening ?}")
-
 snippet heredoc
-	heredoc.Doc(`
+	heredoc.Doc(\`
 		${1:your doc here}
-	`)
+	\`)
 
 snippet ftest
 	func Test${1:}(t *testing.T) {
@@ -178,3 +175,40 @@ snippet curl
 	if err != nil {
 		panic(err)
 	}
+snippet wget
+	func ${1:Wget}(URL, fileName string) error {
+		//Get the response bytes from the url
+		response, err := http.Get(URL)
+		if err != nil {
+			return err
+		}
+		defer response.Body.Close()
+
+		if response.StatusCode != 200 {
+			return errors.New("Received non 200 response code")
+		}
+		//Create a empty file
+		file, err := os.Create(fileName)
+		if err != nil {
+			return err
+		}
+		defer file.Close()
+
+		//Write the bytes to the fiel
+		_, err = io.Copy(file, response.Body)
+		if err != nil {
+			return err
+		}
+
+		return nil
+	}
+snippet ls
+	files, err := ioutil.ReadDir(${1:"./"})
+	for _, f := range files {
+		${2:// do something}
+	}
+snippet tfatal
+	t.Fatal("err: %s", err)
+snippet stringtofile
+	data := []byte(${1:"data"})
+	err := ioutil.WriteFile(${2:path}, $1, 0644)

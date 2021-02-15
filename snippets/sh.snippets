@@ -92,3 +92,5 @@ snippet cleanup
 	  trap - SIGINT SIGTERM ERR EXIT
 	  # script cleanup here
 	}
+snippet err2file
+	2>${1:/dev/null}

@@ -10,8 +10,10 @@ snippet apt-get
 
 snippet wget
 	wget --quiet ${1:} -O ${2:}
+
 snippet curl
 	curl --remote-name --silent ${1:}
+
 snippet user
 	RUN useradd --user-group --system --uid 999 ${1:jenkins}
 	USER $1
@@ -39,6 +41,7 @@ snippet awsiamauthenticator
 	    openssl sha1 -sha256 aws-iam-authenticator &&\
 	    chmod +x ./aws-iam-authenticator &&\
 	    mv aws-iam-authenticator /usr/bin
+
 snippet docker
 	ENV DEBIAN_FRONTEND noninteractive
 	RUN apt-get update && \
@@ -58,4 +61,22 @@ snippet docker
 			docker-ce-cli &&\
 		rm -rf /var/lib/apt/lists/*
 
+snippet yumi
+	yum install --assumeyes ${1:htop}
 
+snippet amazonjava
+	ENV JAVA_HOME "/usr/lib/jvm/java-11-openjdk"
+	RUN amazon-linux-extras install java-openjdk11=11 &&\
+	  ln -sf "$(alternatives --list | grep '^jre_11_openjdk' | cut -f 3)" /usr/lib/jvm/java-11-openjdk && \
+	  echo "==> Java Version: $(java --version)"
+
+snippet pipefail
+	SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+snippet node
+	ENV NODEJS_VERSION 14.15.4
+	ENV PATH "/opt/node-v${NODEJS_VERSION}-linux-x64/bin:${PATH}"
+	RUN wget https://nodejs.org/download/release/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz && \
+	  tar zxf node-v${NODEJS_VERSION}-linux-x64.tar.gz -C /opt && \
+	  rm -f node-v${NODEJS_VERSION}-linux-x64.tar.gz && \
+	  echo "node version: $(node --version)"
