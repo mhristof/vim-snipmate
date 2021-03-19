@@ -80,3 +80,8 @@ snippet node
 	  tar zxf node-v${NODEJS_VERSION}-linux-x64.tar.gz -C /opt && \
 	  rm -f node-v${NODEJS_VERSION}-linux-x64.tar.gz && \
 	  echo "node version: $(node --version)"
+snippet helm
+	RUN curl --remote-name --silent --location https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz &&\
+		tar xvf helm-v3.5.2-linux-amd64.tar.gz &&\
+		mv linux-amd64/helm  /usr/bin/ &&\
+		chmod +x /usr/bin/helm

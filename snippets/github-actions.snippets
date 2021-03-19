@@ -26,3 +26,7 @@ snippet onbranch
 	  push:
 	    branches:
 	      - ${1:master}
+snippet path
+	echo "${1:$HOME/.local/bin}" >> $GITHUB_PATH
+snippet export
+	echo "${1:var}=${2:value}" >> $GITHUB_ENV
