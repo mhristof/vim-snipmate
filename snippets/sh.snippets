@@ -94,3 +94,6 @@ snippet cleanup
 	}
 snippet err2file
 	2>${1:/dev/null}
+snippet userdata
+	# Log to console, user-data.log, and under user-data through syslog
+	exec > >( tee -a /var/log/user-data.log | logger -t user-data -s 2>/dev/console ) 2>&1

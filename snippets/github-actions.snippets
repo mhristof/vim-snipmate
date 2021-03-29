@@ -30,3 +30,8 @@ snippet path
 	echo "${1:$HOME/.local/bin}" >> $GITHUB_PATH
 snippet export
 	echo "${1:var}=${2:value}" >> $GITHUB_ENV
+snippet automerge
+	- name: automerge
+	  uses: mhristof/github-action-automerge@v1.0.1
+	  with:
+	    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
