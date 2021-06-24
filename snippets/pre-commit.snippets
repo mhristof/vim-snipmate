@@ -1,0 +1,19 @@
+snippet terraform
+	- repo: git://github.com/antonbabenko/pre-commit-terraform
+	  rev: v1.50.0
+	   hooks:
+	     - id: terraform_fmt
+	     - id: terraform_docs
+snippet yaml
+	- repo: https://github.com/pre-commit/pre-commit-hooks
+	 rev: v2.3.0
+	 hooks:
+	   - id: check-yaml
+	   - id: end-of-file-fixer
+	     exclude: README.md
+	   - id: trailing-whitespace
+snippet md
+	- repo: https://github.com/igorshubovych/markdownlint-cli
+	  rev: v0.27.1
+	  hooks:
+	   - id: markdownlint
