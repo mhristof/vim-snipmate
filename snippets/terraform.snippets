@@ -244,4 +244,35 @@ snippet assert
 	assert_${1:} = ${2:true} ? (
 	  file("ERROR: ${3: message}")
 	) : null${4:}
+snippet tfebackend
+	terraform {
+	  backend "remote" {
+		hostname = "app.terraform.io"
+		organization = "${1:my-org}"
 
+		workspaces {
+		  name = "${2:my-workspace}"
+		}
+	  }
+	}
+snippet inlinepolicy
+	inline_policy {
+	  name = "${1:name}"
+
+	  policy = jsonencode({
+	    Version = "2012-10-17"
+	    Statement = [
+	      {
+	        Action   = ["${2:s3:Put*}"]
+	        Effect   = "${3:Allow}"
+	        Resource = "${4:*}"
+	      },
+	    ]
+	  })
+	}
+snippet password
+	resource "random_password" "${1:password}" {
+	  length           = ${2:32}
+	  special          = true
+	  // Use with "random_password.$1.result"
+	}

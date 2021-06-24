@@ -15,3 +15,15 @@ snippet isset
 	ifeq ($(${1:VARIABLE}),)
 	$(error $1 not set)
 	endif
+snippet uname
+	$(shell uname | tr A-Z a-z)
+snippet avrule
+	$@
+snippet avfirstprereq
+	$<
+snippet avallnewerprereq
+	$?
+snippet avallaprereq
+	$^
+snippet hgroot
+	$(shell git rev-parse --show-toplevel)
