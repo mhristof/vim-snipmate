@@ -214,3 +214,5 @@ snippet stringtofile
 	err := ioutil.WriteFile(${2:path}, $1, 0644)
 snippet testify
 	"github.com/stretchr/testify/assert"
+snippet tofile
+	err := ioutil.WriteFile(${1:path}, ${2:bytes}, 0644)${3:}

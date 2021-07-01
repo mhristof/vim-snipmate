@@ -276,3 +276,42 @@ snippet password
 	  special          = true
 	  // Use with "random_password.$1.result"
 	}
+snippet iamrole
+	resource "aws_iam_role" "${1:name}" {
+	  name = "$1"
+
+	  assume_role_policy = data.aws_iam_policy_document.$1_trust.json
+
+	}
+
+	data "aws_iam_policy_document" "$1_trust" {
+	  statement {
+		sid = "TrustFor$1"
+
+		actions = ["sts:AssumeRole"]
+
+		principals {
+		  type        = "Service"
+		  identifiers = ["${2:ec2}.amazonaws.com"]
+		}
+	  }
+	}
+snippet arn
+	data "aws_arn" "${1:name}" {
+	  arn = ${2:value}
+	}
+snippet iampermissions
+	data "aws_iam_policy_document" "${1:name}" {
+	  statement {
+		sid    = "${2:}"
+		effect = "Allow"
+		actions = [
+		  "${3:}",
+		]
+		resources = [
+		  ${4:}
+		]
+	  }
+	}
+snippet rangelist
+	for_each = toset(${1:list}) // use each.key

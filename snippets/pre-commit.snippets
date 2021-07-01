@@ -17,3 +17,18 @@ snippet md
 	  rev: v0.27.1
 	  hooks:
 	   - id: markdownlint
+snippet bash
+	- repo: https://github.com/gruntwork-io/pre-commit
+	  rev: v0.1.12
+	  hooks:
+		- id: shellcheck
+	- repo: local
+	  hooks:
+		- id: shfmt
+		  name: shfmt
+		  minimum_pre_commit_version: 3.3.0
+		  language: golang
+		  additional_dependencies: [mvdan.cc/sh/v3/cmd/shfmt@v3.3.0]
+		  entry: shfmt
+		  args: ["-w", "-i", "4", "-ci"]
+		  types: [shell]
